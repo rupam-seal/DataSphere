@@ -1,0 +1,46 @@
+:root{
+    /* Common Colours */
+    --colorTransparent:rgba(0,0,0,0);
+    --colorWhite:#FFFFFF;
+    --colorMediumWhite:#ffffffe1;
+    --colorLightWhite:#ffffff7b;
+    --colorBlack:#000000;
+
+    /* Main background colors */
+	--mainBgColor:#f9fbff;
+    --sideBgColor:#FFFFFF;
+    --colorPrimary: #1E00FF;
+    --colorSecondary: #1B254B;
+    --colorText100: rgba(27, 37, 75, 1);
+    --colorText70: rgba(27, 37, 75, 7);
+    --colorText50: rgba(27, 37, 75, 0.5);
+    --colorText30: rgba(27, 37, 75, 0.3);
+    --colorText10: rgba(27, 37, 75, 0.1);
+    --colorWhite100: rgba(255, 255, 255, 1);
+    --colorWhite70: rgba(255, 255, 255, 0.7);
+
+    /* Sidebar top navigation DOT color */
+    --dotColor1:#FC6058;
+    --dotColor2:#FEC02F;
+    --dotColor3:#2ACA3E;
+
+    /* Logo Color */
+    --logoColor:#F96057;
+
+    /* CardColors */
+    --colorOrange:#F96057;
+    --colorOrangeLight:#FF9B95;
+    --colorYellow:#FFAC2F;
+    --colorYellowLight:#FFCE85;
+    --colorGreen:#09A94F;
+    --colorGreenLight:#25CC6D;
+
+    /* TextColors */
+    --cardTextColor:#2D3748;
+    --sidebarHoverBackgroundColor:#1E00FF;
+    --sidebarNavigationTitleTextColor:#8F9BBA;
+    --sidebarNavigationItemTextColor:#8F9BBA;
+    --profileTextColor:#c8c8c8;
+    --cardBg:#16171f;
+    --seperatorColor:#35363843;
+}

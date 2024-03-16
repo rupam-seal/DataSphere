@@ -1,0 +1,121 @@
+/* 
+1rem = 16px || 100%
+1px = 16/100 = 6.25%
+10px = 6.25%*10 = 62.5%
+Now
+1rem = 10px || 62.5%
+*/
+html {
+  font-size: 62.5%;
+}
+
+body {
+  padding-left: 36rem;
+  padding-top: 2rem;
+  padding-right: 4rem;
+  background-color: var(--mainBgColor);
+  font-family: 'Inter', sans-serif;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+background: var(--colorText10);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: var(--colorText30);
+border-radius: 1rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: var(--colorPrimary);
+}
+
+/* Removing unwanted margin from "h tag" */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0rem;
+  padding: 0rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Media query for all screen resolution */
+@media (max-width: 750px) {
+  body {
+    padding-left: 4rem;
+  }
+}
+
+@media (max-width: 880px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+@media (min-width: 1600px) {
+  html {
+    font-size: 70%;
+  }
+}
+
+@media (min-width: 1900px) {
+  html {
+    font-size: 80%;
+  }
+}
+
+@media (min-width: 2200px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+@media (min-width: 2500px) {
+  html {
+    font-size: 100%;
+  }
+}
+
+@media (min-width: 2800px) {
+  html {
+    font-size: 110%;
+  }
+}
+
+@media (min-width: 3200px) {
+  html {
+    font-size: 120%;
+  }
+}
+
+@media (min-width: 3500px) {
+  html {
+    font-size: 130%;
+  }
+}
+
+@media (min-width: 3800px) {
+  html {
+    font-size: 140%;
+  }
+}
+
+@media (min-width: 4000px) {
+  html {
+    font-size: 150%;
+  }
+}
