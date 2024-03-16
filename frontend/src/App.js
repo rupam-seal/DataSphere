@@ -7,7 +7,7 @@ import { Topbar } from "./components/topbar";
 import GlobalProvider from "./contexts/GlobalProvider";
 import { Overview } from "./pages/overview";
 
-const App = () => {
+export const App = () => {
   return (
     <React.StrictMode>
       <GlobalProvider>
@@ -24,5 +24,3 @@ const App = () => {
     </React.StrictMode>
   );
 };
-
-export default App;
