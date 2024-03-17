@@ -5,10 +5,29 @@
 }
 
 .select {
-  width: 200px;
+  max-width: 600px;
 }
 
 .select-multi {
-  min-width: 200px;
   max-width: 600px;
+}
+
+.chart__canvas {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 1.6rem;
+  margin-top: 1.6rem;
+  margin-bottom: 1.6rem;
+  font-size: 2.1rem;
+  color: var(--colorText70);
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .select__container {
+    display: flex;
+    flex-direction: column;
+  }
 }

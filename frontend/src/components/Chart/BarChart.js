@@ -25,7 +25,7 @@ ChartJS.register(
   BarElement
 );
 
-const BarChart = ({ data }) => {
+const BarChart = ({ data, title, children }) => {
   const options = {
     maintainAspectRatio: false,
     responsive: true,
@@ -55,6 +55,10 @@ const BarChart = ({ data }) => {
   };
   return (
     <div className={"bar"}>
+      <div className="chart__top">
+        {children}
+        <div className="chart__title">{title}</div>
+      </div>
       <Bar options={options} data={data} />
     </div>
   );

@@ -40,6 +40,7 @@
   align-items: center;
   display: flex;
   padding-left: 2rem;
+  cursor: pointer;
 }
 
 .profile__img {
@@ -95,9 +96,8 @@
   cursor: pointer;
 }
 
-.profile__option:hover {
-  animation: shake 0.5s;
-  animation-iteration-count: 5;
+.profile:hover .profile__option {
+  animation: shake 0.5s infinite;
 }
 
 .hidden {
@@ -120,15 +120,23 @@
 /* ---------- ANIMATION ---------- */
 @keyframes shake {
   0% {
-    transform: translateY(0.2rem);
+    transform: translateY(0rem);
+    scale: 1;
+  }
+
+  25% {
+    transform: translateY(0.1rem);
+    scale: 1.03;
   }
 
   50% {
-    transform: translateY(0rem);
+    transform: translateY(0.2rem);
+    scale: 1.06;
   }
 
   100% {
-    transform: translateY(-0.2rem);
+    transform: translateY(0rem);
+    scale: 1;
   }
 }
 
@@ -149,6 +157,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .topbar {
+    margin-left: 2rem;
   }
 }
 

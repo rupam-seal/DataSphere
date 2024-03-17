@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 import { Filler } from "chart.js";
 import "./index.css";
 import {
@@ -25,7 +25,7 @@ ChartJS.register(
   BarElement
 );
 
-const LineChart = ({ data }) => {
+const LineChart = ({ data, title, children }) => {
   const options = {
     maintainAspectRatio: false,
     responsive: true,
@@ -53,8 +53,13 @@ const LineChart = ({ data }) => {
       },
     },
   };
+
   return (
     <div className={"bar"}>
+      <div className="chart__top">
+        {children}
+        <div className="chart__title">{title}</div>
+      </div>
       <Line options={options} data={data} />
     </div>
   );

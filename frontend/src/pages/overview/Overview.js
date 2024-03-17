@@ -6,8 +6,19 @@ import LineChart from "../../components/Chart/LineChart";
 import BarChart from "../../components/Chart/BarChart";
 import { sortYears } from "../../utils/InsightsUtils";
 import { extractYears } from "../../utils/YearUtils";
-import { getChartData, getYearData } from "../../utils/ChartDataUtils";
+import { FaBolt } from "react-icons/fa";
+import { RiRoadMapFill } from "react-icons/ri";
+import { MdOutlineLocalFireDepartment } from "react-icons/md";
+import { AiFillLike } from "react-icons/ai";
+import { MdOutlineAccessTimeFilled } from "react-icons/md";
+import { HiTrendingUp, HiLocationMarker } from "react-icons/hi";
+import {
+  getChartData,
+  getChartDataForCategory,
+  getYearData,
+} from "../../utils/ChartDataUtils";
 import Select from "react-select";
+import PieChart from "../../components/Chart/PieChart";
 
 export const Overview = () => {
   const [insights, setInsights] = useState([]);
@@ -55,10 +66,7 @@ export const Overview = () => {
 
   const options = [{ value: "", label: "All Sectors" }];
   const years = [{ value: "", label: "All Years" }];
-  const filters = [
-    { value: "Year", label: "Year" },
-    { value: "SWOT", label: "SWOT" },
-  ];
+  const filters = [{ value: "Year", label: "Year" }];
 
   sectors.forEach((sector) => {
     if (sector !== "") {
@@ -140,16 +148,48 @@ export const Overview = () => {
         </div>
       </div>
       <div className="chart__canvas">
-        <LineChart data={getYearData(filteredInsights, sortedYears)} />
         <BarChart
           data={getChartData(filteredInsights, sortedYears, "intensity")}
-        />
+          title={"Intensity"}
+        >
+          <FaBolt />
+        </BarChart>
         <BarChart
           data={getChartData(filteredInsights, sortedYears, "likelihood")}
-        />
+          title={"Likelihood"}
+        >
+          <AiFillLike />
+        </BarChart>
         <BarChart
           data={getChartData(filteredInsights, sortedYears, "relevance")}
-        />
+          title={"Relevance"}
+        >
+          <HiTrendingUp />
+        </BarChart>
+        <LineChart
+          data={getYearData(filteredInsights, sortedYears)}
+          title={"Year"}
+        >
+          <MdOutlineAccessTimeFilled />
+        </LineChart>
+        <PieChart
+          data={getChartDataForCategory(filteredInsights, "country")}
+          title={"Country"}
+        >
+          <HiLocationMarker />
+        </PieChart>
+        <PieChart
+          data={getChartDataForCategory(filteredInsights, "topic")}
+          title={"Topic"}
+        >
+          <MdOutlineLocalFireDepartment />
+        </PieChart>
+        <PieChart
+          data={getChartDataForCategory(filteredInsights, "region")}
+          title={"Region"}
+        >
+          <RiRoadMapFill />
+        </PieChart>
       </div>
     </div>
   );

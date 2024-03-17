@@ -10,9 +10,9 @@ html {
 }
 
 body {
-  padding-left: 36rem;
+  padding-left: 34rem;
   padding-top: 2rem;
-  padding-right: 4rem;
+  padding-right: 2rem;
   background-color: var(--mainBgColor);
   font-family: 'Inter', sans-serif;
 }
@@ -56,7 +56,8 @@ a {
 /* Media query for all screen resolution */
 @media (max-width: 750px) {
   body {
-    padding-left: 4rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 

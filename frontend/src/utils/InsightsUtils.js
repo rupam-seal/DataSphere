@@ -35,3 +35,13 @@ export const getInsightCountByYear = (filteredInsights, sortedYears) => {
 export const sortYears = (years) => {
   return [...new Set(years)].sort((a, b) => a - b);
 };
+
+export const getInsightCountByCategory = (filteredInsights, category) => {
+  const insightCountByCategory = {};
+  filteredInsights.forEach((insight) => {
+    const categoryValue = insight[category];
+    insightCountByCategory[categoryValue] =
+      (insightCountByCategory[categoryValue] || 0) + 1;
+  });
+  return insightCountByCategory;
+};

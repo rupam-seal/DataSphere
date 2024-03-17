@@ -10,9 +10,10 @@
 	--mainBgColor:#f9fbff;
     --sideBgColor:#FFFFFF;
     --colorPrimary: #1E00FF;
+    --colorPrimary70: rgba(30, 0, 255, 0.7);
     --colorSecondary: #1B254B;
     --colorText100: rgba(27, 37, 75, 1);
-    --colorText70: rgba(27, 37, 75, 7);
+    --colorText70: rgba(27, 37, 75, 0.7);
     --colorText50: rgba(27, 37, 75, 0.5);
     --colorText30: rgba(27, 37, 75, 0.3);
     --colorText10: rgba(27, 37, 75, 0.1);
