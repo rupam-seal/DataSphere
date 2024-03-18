@@ -9,7 +9,7 @@
     /* Main background colors */
 	--mainBgColor:#f9fbff;
     --sideBgColor:#FFFFFF;
-    --colorPrimary: #1E00FF;
+    --colorPrimary: #1e00ff;
     --colorPrimary70: rgba(30, 0, 255, 0.7);
     --colorSecondary: #1B254B;
     --colorText100: rgba(27, 37, 75, 1);
@@ -17,8 +17,10 @@
     --colorText50: rgba(27, 37, 75, 0.5);
     --colorText30: rgba(27, 37, 75, 0.3);
     --colorText10: rgba(27, 37, 75, 0.1);
+    --colorText5: rgba(27, 37, 75, 0.04);
     --colorWhite100: rgba(255, 255, 255, 1);
-    --colorWhite70: rgba(255, 255, 255, 0.7);
+    --colorWhite70: rgba(241, 239, 252, 0.7);
+    --colorWhite30: rgba(255, 255, 255, 0.3);
 
     /* Sidebar top navigation DOT color */
     --dotColor1:#FC6058;

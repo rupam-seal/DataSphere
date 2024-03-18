@@ -13,7 +13,27 @@ class InsightsService {
     }
   }
 
-  static filterInsights(insights, selectedSector, selectedYear) {
+  static async fetchInsightsByPage(page = 1) {
+    try {
+      const response = await axios.get(
+        `https://datasphere-api.vercel.app/insights/?page=${page}`
+      );
+      return response.data.results;
+    } catch (error) {
+      console.error("Error fetching insights:", error);
+      throw error;
+    }
+  }
+
+  static filterInsights(
+    insights,
+    selectedSector,
+    selectedYear,
+    selectedTopic,
+    selectedRegion,
+    selectedCountry,
+    selectedPestle
+  ) {
     return insights.filter((insight) => {
       const insightYear = new Date(insight.published).getFullYear();
       return (
@@ -21,7 +41,19 @@ class InsightsService {
           insight.sector
             .toLowerCase()
             .includes(selectedSector.toLowerCase())) &&
-        (!selectedYear || insightYear === parseInt(selectedYear))
+        (!selectedYear || insightYear === parseInt(selectedYear)) &&
+        (!selectedTopic ||
+          insight.topic.toLowerCase().includes(selectedTopic.toLowerCase())) &&
+        (!selectedRegion ||
+          insight.region
+            .toLowerCase()
+            .includes(selectedRegion.toLowerCase())) &&
+        (!selectedCountry ||
+          insight.country
+            .toLowerCase()
+            .includes(selectedCountry.toLowerCase())) &&
+        (!selectedPestle ||
+          insight.pestle.toLowerCase().includes(selectedPestle.toLowerCase()))
       );
     });
   }

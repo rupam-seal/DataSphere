@@ -1,0 +1,62 @@
+.pagination__container {
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
+  text-align: center;
+}
+
+.table__input_container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  width: 30rem;
+  background-color: var(--colorWhite100);
+  border-radius: 0.8rem;
+  border-style: solid;
+  border-width: 0.1rem;
+  border-color: var(--colorText10);
+  color: var(--colorText70);
+  margin-bottom: 1.6rem;
+  font-size: 1.5rem;
+  color: var(--colorText30);
+  padding-left: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  text-align: center;
+}
+
+.table__input {
+  flex: 1;
+  width: 100%;
+  background-color: var(--colorTransparent);
+  padding: 1rem 1.2rem 1.1rem 0.8rem;
+  border-radius: 0.8rem;
+  border-style: none;
+  color: var(--colorText70);
+  outline: none;
+}
+
+.table__input::placeholder {
+  color: var(--colorText30);
+}
+
+.pagination__text {
+  margin: 0rem 1.6rem;
+  font-size: 1.2rem;
+}
+
+.pagination__button {
+  cursor: pointer;
+  background-color: var(--colorPrimary70);
+  border-style: none;
+  color: var(--colorWhite100);
+  padding: 1rem 1.2rem;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  opacity: 1;
+  scale: 1;
+  animation: all 0.35 ease-in-out;
+}
+
+.pagination__button:hover {
+  opacity: 0.9;
+  scale: 0.98;
+}

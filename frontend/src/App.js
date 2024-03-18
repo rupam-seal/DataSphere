@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Create from "./pages/Create";
-import Insights from "./pages/Insights";
 import { Sidebar } from "./components/sidebar";
 import { Topbar } from "./components/topbar";
+import { Insights } from "./pages/Insights";
 import GlobalProvider from "./contexts/GlobalProvider";
 import { Overview } from "./pages/overview";
 import { Filler } from "chart.js";

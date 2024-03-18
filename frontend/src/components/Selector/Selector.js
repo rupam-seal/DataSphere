@@ -2,7 +2,12 @@ import React from "react";
 
 import Select from "react-select";
 
-export const Selector = ({ options, defaultValue, onChange }) => {
+export const Selector = ({
+  options,
+  defaultValue,
+  onChange,
+  isMulti = false,
+}) => {
   return (
     <Select
       styles={{
@@ -10,6 +15,7 @@ export const Selector = ({ options, defaultValue, onChange }) => {
           ...baseStyles,
           fontSize: "12px",
           borderColor: "rgba(27, 37, 75, 0.1)",
+          boxShadow: "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
         }),
         indicatorSeparator: (base) => ({
           ...base,
@@ -23,6 +29,7 @@ export const Selector = ({ options, defaultValue, onChange }) => {
       defaultValue={defaultValue}
       options={options}
       onChange={onChange}
+      isMulti={isMulti}
     />
   );
 };

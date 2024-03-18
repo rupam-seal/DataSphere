@@ -5,10 +5,6 @@ export const getMonthsInYear = () => {
       new Date(2000, i - 1, 1).toLocaleString("default", { month: "long" })
     );
   }
-
-  console.log("====================================");
-  console.log("getMonthsInYear", months);
-  console.log("====================================");
   return months;
 };
 
@@ -18,12 +14,12 @@ export const getInsightDataForMonths = (filteredInsights, attribute) => {
     const publishedDate = new Date(insight.published);
     if (!isNaN(publishedDate)) {
       const monthIndex = publishedDate.getMonth();
-      data[monthIndex] += parseInt(insight[attribute]);
+      const attributeValue = parseInt(insight[attribute]);
+      if (!isNaN(attributeValue)) {
+        data[monthIndex] += attributeValue;
+      }
     }
   });
-  console.log("====================================");
-  console.log("getInsightDataForMonths", data);
-  console.log("====================================");
   return data;
 };
 
@@ -38,9 +34,6 @@ export const getInsightCountByYear = (filteredInsights, sortedYears) => {
   });
 
   const data = sortedYears.map((year) => insightCountByYear[year]);
-  console.log("====================================");
-  console.log("getInsightCountByYear", data);
-  console.log("====================================");
   return data;
 };
 
@@ -55,9 +48,55 @@ export const getInsightCountByCategory = (filteredInsights, category) => {
     insightCountByCategory[categoryValue] =
       (insightCountByCategory[categoryValue] || 0) + 1;
   });
-
-  console.log("====================================");
-  console.log("getInsightCountByCategory", insightCountByCategory);
-  console.log("====================================");
   return insightCountByCategory;
+};
+
+export const getSWOTAnalysis = (filteredInsights, selectedSwot) => {
+  let strengthsCount = 0;
+  let weaknessesCount = 0;
+  let opportunitiesCount = 0;
+  let threatsCount = 0;
+
+  filteredInsights.forEach((entry) => {
+    const intensity = parseInt(entry.intensity);
+    const relevance = parseInt(entry.relevance);
+    const likelihood = parseInt(entry.likelihood);
+
+    if (!isNaN(intensity) && !isNaN(relevance) && !isNaN(likelihood)) {
+      if (intensity >= 6) {
+        if (likelihood >= 3) {
+          strengthsCount++;
+        } else if (likelihood <= 2) {
+          weaknessesCount++;
+        }
+      }
+      if (relevance >= 3) {
+        if (likelihood >= 3) {
+          opportunitiesCount++;
+        } else if (likelihood <= 2) {
+          threatsCount++;
+        }
+      }
+    }
+  });
+
+  if (selectedSwot === "Strength") {
+    weaknessesCount = 0;
+    opportunitiesCount = 0;
+    threatsCount = 0;
+  } else if (selectedSwot === "Weakness") {
+    strengthsCount = 0;
+    opportunitiesCount = 0;
+    threatsCount = 0;
+  } else if (selectedSwot === "Opportunities") {
+    strengthsCount = 0;
+    weaknessesCount = 0;
+    threatsCount = 0;
+  } else if (selectedSwot === "Threats") {
+    strengthsCount = 0;
+    weaknessesCount = 0;
+    opportunitiesCount = 0;
+  }
+
+  return { strengthsCount, weaknessesCount, opportunitiesCount, threatsCount };
 };

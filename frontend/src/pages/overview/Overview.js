@@ -4,17 +4,22 @@ import InsightsService from "../../Services/InsightsService";
 import { useGlobalContext } from "../../contexts/GlobalProvider";
 import LineChart from "../../components/Chart/LineChart";
 import BarChart from "../../components/Chart/BarChart";
-import { sortYears } from "../../utils/InsightsUtils";
-import { extractYears } from "../../utils/YearUtils";
+import { getSWOTAnalysis, sortYears } from "../../utils/InsightsUtils";
+import {
+  extractEndYears,
+  extractStartYears,
+  extractYears,
+} from "../../utils/YearUtils";
 import { FaBolt } from "react-icons/fa";
 import { RiRoadMapFill } from "react-icons/ri";
-import { MdOutlineLocalFireDepartment } from "react-icons/md";
+import { MdOutlineLocalFireDepartment, MdAnalytics } from "react-icons/md";
 import { AiFillLike } from "react-icons/ai";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
 import { HiTrendingUp, HiLocationMarker } from "react-icons/hi";
 import {
   getChartData,
   getChartDataForCategory,
+  getSWOTChartData,
   getYearData,
 } from "../../utils/ChartDataUtils";
 import PieChart from "../../components/Chart/PieChart";
@@ -25,8 +30,22 @@ export const Overview = () => {
   const [filteredInsights, setFilteredInsights] = useState([]);
   const [selectedSector, setSelectedSector] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
-  const [sortedYears, setSortedYears] = useState([]);
+  const [selectedTopic, setSelectedTopic] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("");
+  const [selectedPestle, setSelectedPestle] = useState("");
+  const [selectedSwot, setSelectedSwot] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [sortedPublishedYears, setPublishedYears] = useState([]);
+  const [sortedEndYears, setSortedEndYears] = useState([]);
+  const [sortedStartYears, setSortedStartYears] = useState([]);
+  const [selectedFilter, setSelectedFilter] = useState("Published Year");
   const { sectors } = useGlobalContext();
+  const [swotCounts, setSWOTCounts] = useState({
+    strengthsCount: 0,
+    weaknessesCount: 0,
+    opportunitiesCount: 0,
+    threatsCount: 0,
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,7 +54,11 @@ export const Overview = () => {
         setInsights(data);
         setFilteredInsights(data);
         const years = extractYears(data);
-        setSortedYears(sortYears(years));
+        setPublishedYears(sortYears(years));
+        const startYears = extractStartYears(data);
+        setSortedStartYears(sortYears(startYears));
+        const endYears = extractEndYears(data);
+        setSortedEndYears(sortYears(endYears));
       } catch (error) {
         console.error("Error fetching insights:", error);
       }
@@ -45,16 +68,45 @@ export const Overview = () => {
   }, []);
 
   useEffect(() => {
+    const {
+      strengthsCount,
+      weaknessesCount,
+      opportunitiesCount,
+      threatsCount,
+    } = getSWOTAnalysis(filteredInsights, selectedSwot);
+    setSWOTCounts({
+      strengthsCount,
+      weaknessesCount,
+      opportunitiesCount,
+      threatsCount,
+    });
+  }, [filteredInsights, selectedSwot]);
+
+  useEffect(() => {
     const applyFilters = () => {
       const filteredData = InsightsService.filterInsights(
         insights,
         selectedSector,
-        selectedYear
+        selectedYear,
+        selectedTopic,
+        selectedRegion,
+        selectedCountry,
+        selectedPestle,
+        selectedSwot
       );
       setFilteredInsights(filteredData);
     };
     applyFilters();
-  }, [insights, selectedSector, selectedYear, sortedYears]);
+  }, [
+    insights,
+    selectedCountry,
+    selectedRegion,
+    selectedSector,
+    selectedTopic,
+    selectedYear,
+    selectedPestle,
+    selectedSwot,
+  ]);
 
   const handleSectorChange = (event) => {
     setSelectedSector(event.value);
@@ -64,9 +116,52 @@ export const Overview = () => {
     setSelectedYear(event.value);
   };
 
+  const handleTopicChange = (event) => {
+    setSelectedTopic(event.value);
+  };
+
+  const handleRegionChange = (event) => {
+    setSelectedRegion(event.value);
+  };
+
+  const handleCountryChange = (event) => {
+    setSelectedCountry(event.value);
+  };
+
+  const handlePestleChange = (event) => {
+    setSelectedPestle(event.value);
+  };
+
+  const handleFilterChange = (event) => {
+    setSelectedYear("");
+    setSelectedFilter(event.value);
+  };
+
+  const handleSwotChange = (event) => {
+    setSelectedSwot(event.value);
+  };
+
+  const yearFilters = [
+    { value: "Published Year", label: "Published Year" },
+    { value: "Start Year", label: "Start Year" },
+    { value: "End Year", label: "End Year" },
+  ];
+
   const options = [{ value: "", label: "All Sectors" }];
-  const years = [{ value: "", label: "All Years" }];
-  const filters = [{ value: "Year", label: "Year" }];
+  const publishedYears = [{ value: "", label: "All Published Years" }];
+  const startYears = [{ value: "", label: "All Start Years" }];
+  const endYears = [{ value: "", label: "All End Years" }];
+  const topics = [{ value: "", label: "All Topics" }];
+  const regions = [{ label: "All Regions", value: "" }];
+  const countries = [{ label: "All Countries", value: "" }];
+  const pestles = [{ label: "All Pestles", value: "" }];
+  const swot = [
+    { label: "All SWOT", value: "" },
+    { label: "Strength", value: "Strength" },
+    { label: "Weakness", value: "Weakness" },
+    { label: "Opportunities", value: "Opportunities" },
+    { label: "Threats", value: "Threats" },
+  ];
 
   sectors.forEach((sector) => {
     if (sector !== "") {
@@ -74,16 +169,89 @@ export const Overview = () => {
     }
   });
 
-  sortedYears.forEach((year) => {
-    years.push({ value: year, label: year });
+  sortedPublishedYears.forEach((year) => {
+    publishedYears.push({ value: year, label: year });
+  });
+
+  const uniqueTopics = [...new Set(insights.map((insight) => insight.topic))];
+  uniqueTopics.forEach((topic) => {
+    if (topic !== "") {
+      topics.push({ value: topic, label: topic });
+    }
+  });
+
+  sortedEndYears.forEach((year) => {
+    endYears.push({ value: year, label: year });
+  });
+
+  sortedStartYears.forEach((year) => {
+    startYears.push({ value: year, label: year });
+  });
+
+  const uniqueRegions = [...new Set(insights.map((insight) => insight.region))];
+  uniqueRegions.forEach((region) => {
+    if (region !== "") {
+      regions.push({ value: region, label: region });
+    }
+  });
+
+  const uniqueCountries = [
+    ...new Set(insights.map((insight) => insight.country)),
+  ];
+  uniqueCountries.forEach((country) => {
+    if (country !== "") {
+      countries.push({ value: country, label: country });
+    }
+  });
+
+  const uniquePestle = [...new Set(insights.map((insight) => insight.pestle))];
+  uniquePestle.forEach((pestle) => {
+    if (pestle !== "") {
+      pestles.push({ value: pestle, label: pestle });
+    }
   });
 
   return (
     <div style={{ marginTop: "90px" }}>
       <div className="select__container">
         <div className="select-multi">
-          <Selector options={filters} defaultValue={[]} onChange={() => {}} />
+          <Selector
+            options={yearFilters}
+            defaultValue={{
+              value: "Published Year",
+              label: "Published Year",
+            }}
+            onChange={handleFilterChange}
+          />
         </div>
+        {selectedFilter === "Published Year" && (
+          <div className="select">
+            <Selector
+              options={publishedYears}
+              defaultValue={{ label: "All Published Years", value: "" }}
+              onChange={handleYearChange}
+            />
+          </div>
+        )}
+        {selectedFilter === "Start Year" && (
+          <div className="select">
+            <Selector
+              options={startYears}
+              defaultValue={{ label: "All Start Years", value: "" }}
+              onChange={handleYearChange}
+            />
+          </div>
+        )}
+        {selectedFilter === "End Year" && (
+          <div className="select">
+            <Selector
+              options={endYears}
+              defaultValue={{ label: "All End Years", value: "" }}
+              onChange={handleYearChange}
+            />
+          </div>
+        )}
+        <div className="divider" />
         <div className="select">
           <Selector
             options={options}
@@ -93,37 +261,115 @@ export const Overview = () => {
         </div>
         <div className="select">
           <Selector
-            options={years}
-            defaultValue={{ label: "All Years", value: "" }}
-            onChange={handleYearChange}
+            options={topics}
+            defaultValue={{ label: "All Topics", value: "" }}
+            onChange={handleTopicChange}
+          />
+        </div>
+        <div className="select">
+          <Selector
+            options={regions}
+            defaultValue={{ label: "All Regions", value: "" }}
+            onChange={handleRegionChange}
+          />
+        </div>
+        <div className="select">
+          <Selector
+            options={countries}
+            defaultValue={{ label: "All Countries", value: "" }}
+            onChange={handleCountryChange}
+          />
+        </div>
+        <div className="select">
+          <Selector
+            options={pestles}
+            defaultValue={{ label: "All Pestles", value: "" }}
+            onChange={handlePestleChange}
+          />
+        </div>
+        <div className="select">
+          <Selector
+            options={swot}
+            defaultValue={{ label: "All SWOT", value: "" }}
+            onChange={handleSwotChange}
           />
         </div>
       </div>
       <div className="chart__canvas">
+        <LineChart
+          data={
+            selectedFilter === "Published Year"
+              ? getYearData(filteredInsights, sortedPublishedYears)
+              : selectedFilter === "Start Year"
+              ? getYearData(filteredInsights, sortedStartYears)
+              : selectedFilter === "End Year"
+              ? getYearData(filteredInsights, sortedEndYears)
+              : null
+          }
+          title={"Year"}
+        >
+          <MdOutlineAccessTimeFilled />
+        </LineChart>
         <BarChart
-          data={getChartData(filteredInsights, sortedYears, "intensity")}
+          data={getSWOTChartData(swotCounts, selectedSwot)}
+          title={"SWOT Analysis"}
+        >
+          <MdAnalytics />
+        </BarChart>
+        <BarChart
+          data={
+            selectedFilter === "Published Year"
+              ? getChartData(
+                  filteredInsights,
+                  sortedPublishedYears,
+                  "intensity"
+                )
+              : selectedFilter === "Start Year"
+              ? getChartData(filteredInsights, sortedStartYears, "intensity")
+              : selectedFilter === "End Year"
+              ? getYearData(filteredInsights, sortedEndYears)
+              : null
+          }
           title={"Intensity"}
         >
           <FaBolt />
         </BarChart>
         <BarChart
-          data={getChartData(filteredInsights, sortedYears, "likelihood")}
+          data={
+            selectedFilter === "Published Year"
+              ? getChartData(
+                  filteredInsights,
+                  sortedPublishedYears,
+                  "likelihood"
+                )
+              : selectedFilter === "Start Year"
+              ? getChartData(filteredInsights, sortedStartYears, "likelihood")
+              : selectedFilter === "End Year"
+              ? getYearData(filteredInsights, sortedEndYears)
+              : null
+          }
           title={"Likelihood"}
         >
           <AiFillLike />
         </BarChart>
         <BarChart
-          data={getChartData(filteredInsights, sortedYears, "relevance")}
+          data={
+            selectedFilter === "Published Year"
+              ? getChartData(
+                  filteredInsights,
+                  sortedPublishedYears,
+                  "relevance"
+                )
+              : selectedFilter === "Start Year"
+              ? getChartData(filteredInsights, sortedEndYears, "relevance")
+              : selectedFilter === "End Year"
+              ? getYearData(filteredInsights, sortedEndYears)
+              : null
+          }
           title={"Relevance"}
         >
           <HiTrendingUp />
         </BarChart>
-        <LineChart
-          data={getYearData(filteredInsights, sortedYears)}
-          title={"Year"}
-        >
-          <MdOutlineAccessTimeFilled />
-        </LineChart>
         <PieChart
           data={getChartDataForCategory(filteredInsights, "country")}
           title={"Country"}
