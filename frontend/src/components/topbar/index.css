@@ -61,8 +61,8 @@
 }
 
 .profile__img img {
-  width: 92%;
-  height: 92%;
+  width: 90%;
+  height: 90%;
   border-radius: 50%;
   object-fit: cover;
 }

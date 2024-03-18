@@ -5,6 +5,10 @@ export const getMonthsInYear = () => {
       new Date(2000, i - 1, 1).toLocaleString("default", { month: "long" })
     );
   }
+
+  console.log("====================================");
+  console.log("getMonthsInYear", months);
+  console.log("====================================");
   return months;
 };
 
@@ -17,6 +21,9 @@ export const getInsightDataForMonths = (filteredInsights, attribute) => {
       data[monthIndex] += parseInt(insight[attribute]);
     }
   });
+  console.log("====================================");
+  console.log("getInsightDataForMonths", data);
+  console.log("====================================");
   return data;
 };
 
@@ -29,7 +36,12 @@ export const getInsightCountByYear = (filteredInsights, sortedYears) => {
     const year = new Date(insight.published).getFullYear();
     insightCountByYear[year]++;
   });
-  return sortedYears.map((year) => insightCountByYear[year]);
+
+  const data = sortedYears.map((year) => insightCountByYear[year]);
+  console.log("====================================");
+  console.log("getInsightCountByYear", data);
+  console.log("====================================");
+  return data;
 };
 
 export const sortYears = (years) => {
@@ -43,5 +55,9 @@ export const getInsightCountByCategory = (filteredInsights, category) => {
     insightCountByCategory[categoryValue] =
       (insightCountByCategory[categoryValue] || 0) + 1;
   });
+
+  console.log("====================================");
+  console.log("getInsightCountByCategory", insightCountByCategory);
+  console.log("====================================");
   return insightCountByCategory;
 };

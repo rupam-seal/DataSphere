@@ -35,3 +35,17 @@
   font-size: 1.8rem;
   font-weight: 600;
 }
+
+@media (max-width: 480px) {
+  .bar {
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 30vh;
+  }
+
+  .pie {
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 50vh;
+  }
+}

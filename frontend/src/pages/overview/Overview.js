@@ -17,8 +17,8 @@ import {
   getChartDataForCategory,
   getYearData,
 } from "../../utils/ChartDataUtils";
-import Select from "react-select";
 import PieChart from "../../components/Chart/PieChart";
+import { Selector } from "../../components/Selector";
 
 export const Overview = () => {
   const [insights, setInsights] = useState([]);
@@ -82,67 +82,19 @@ export const Overview = () => {
     <div style={{ marginTop: "90px" }}>
       <div className="select__container">
         <div className="select-multi">
-          <Select
-            styles={{
-              control: (baseStyles, state) => ({
-                ...baseStyles,
-                fontSize: "12px",
-                borderColor: "rgba(27, 37, 75, 0.1)",
-              }),
-              indicatorSeparator: (base) => ({
-                ...base,
-                backgroundColor: "rgba(27, 37, 75, 0.1)",
-              }),
-              menuPortal: (base) => ({
-                ...base,
-                fontSize: "12px",
-              }),
-            }}
-            options={filters}
-            isMulti
-          />
+          <Selector options={filters} defaultValue={[]} onChange={() => {}} />
         </div>
         <div className="select">
-          <Select
-            styles={{
-              control: (baseStyles, state) => ({
-                ...baseStyles,
-                fontSize: "12px",
-                borderColor: "rgba(27, 37, 75, 0.1)",
-              }),
-              indicatorSeparator: (base) => ({
-                ...base,
-                backgroundColor: "rgba(27, 37, 75, 0.1)",
-              }),
-              menuPortal: (base) => ({
-                ...base,
-                fontSize: "12px",
-              }),
-            }}
-            defaultValue={{ label: "All Sectors", value: "" }}
+          <Selector
             options={options}
+            defaultValue={{ label: "All Sectors", value: "" }}
             onChange={handleSectorChange}
           />
         </div>
         <div className="select">
-          <Select
-            styles={{
-              control: (baseStyles, state) => ({
-                ...baseStyles,
-                fontSize: "12px",
-                borderColor: "rgba(27, 37, 75, 0.1)",
-              }),
-              indicatorSeparator: (base) => ({
-                ...base,
-                backgroundColor: "rgba(27, 37, 75, 0.1)",
-              }),
-              menuPortal: (base) => ({
-                ...base,
-                fontSize: "12px",
-              }),
-            }}
-            defaultValue={{ label: "All Years", value: "" }}
+          <Selector
             options={years}
+            defaultValue={{ label: "All Years", value: "" }}
             onChange={handleYearChange}
           />
         </div>

@@ -6,6 +6,31 @@ import { Sidebar } from "./components/sidebar";
 import { Topbar } from "./components/topbar";
 import GlobalProvider from "./contexts/GlobalProvider";
 import { Overview } from "./pages/overview";
+import { Filler } from "chart.js";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  ArcElement,
+} from "chart.js";
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler,
+  BarElement,
+  ArcElement
+);
 
 const App = () => {
   return (

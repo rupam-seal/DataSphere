@@ -1,29 +1,6 @@
-import React, { Children } from "react";
-import { Filler } from "chart.js";
+import React from "react";
 import "./index.css";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-} from "chart.js";
 import { Line } from "react-chartjs-2";
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler,
-  BarElement
-);
 
 const LineChart = ({ data, title, children }) => {
   const options = {
