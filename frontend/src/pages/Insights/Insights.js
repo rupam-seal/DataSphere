@@ -178,7 +178,7 @@ export const Insights = () => {
         </button>
         <span className={"pagination__text"}>Page {currentPage}</span>
         <button
-          className="button"
+          className="pagination__button"
           onClick={goToNextPage}
           disabled={currentPage === totalPages}
         >
