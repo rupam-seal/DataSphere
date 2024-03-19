@@ -4,7 +4,7 @@ class InsightsService {
   static async fetchInsights() {
     try {
       const response = await axios.get(
-        "https://datasphere-api.vercel.app/insights/?page_size=1000"
+        "https://datasphere-admin.vercel.app/api/insights/?page_size=1000"
       );
       return response.data.results;
     } catch (error) {
@@ -16,7 +16,7 @@ class InsightsService {
   static async fetchInsightsByPage(page = 1) {
     try {
       const response = await axios.get(
-        `https://datasphere-api.vercel.app/insights/?page=${page}`
+        `https://datasphere-admin.vercel.app/api/insights/?page=${page}`
       );
       return response.data.results;
     } catch (error) {
