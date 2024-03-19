@@ -52,6 +52,9 @@ INSTALLED_APPS = [
 
     # corsheaders
     'corsheaders',
+
+    'dashboard.apps.DashboardConfig',
+    'create.apps.CreateConfig',
 ]
 
 MIDDLEWARE = [

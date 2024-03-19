@@ -5,7 +5,7 @@ class Insight(models.Model):
     intensity = models.CharField(max_length=255, blank=True, default=0, null=True)
     sector = models.CharField(max_length=255, blank=True, null=True)
     topic = models.CharField(max_length=255, blank=True, null=True)
-    insight = models.TextField(blank=True, null=True)  # Changed to TextField
+    insight = models.TextField(blank=True, null=True)
     url = models.TextField(blank=True, null=True)
     region = models.CharField(max_length=255, blank=True, null=True)
     start_year = models.CharField(max_length=255, blank=True, null=True)
@@ -16,7 +16,7 @@ class Insight(models.Model):
     relevance = models.CharField(max_length=255, blank=True, default=0, null=True)
     pestle = models.CharField(max_length=255, blank=True, null=True)
     source = models.CharField(max_length=255, blank=True, null=True)
-    title = models.TextField(blank=True, null=True)  # Changed to TextField
+    title = models.TextField(blank=True, null=True)
     likelihood = models.CharField(max_length=255, blank=True, default=0, null=True)
 
     def __str__(self):

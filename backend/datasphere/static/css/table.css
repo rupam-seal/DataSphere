@@ -1,0 +1,117 @@
+/* table title */
+.table-title {
+    color: var(--colorText100);
+    margin: 3rem 2rem 2rem 0.5rem;
+}
+
+.table-container {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.table {
+    border-style: none;
+    border-collapse: collapse;
+    font-size: 1.4rem;
+}
+
+.table__header-raw {
+    background-color: var(--colorWhite);
+    border-radius: 10rem;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+
+.table__body-raw {
+    background-color: var(--colorWhite);
+    border-radius: 10rem;   
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+
+.table__header-raw
+.col {
+    /* background-image: url('/static/icons/ic_arrow.svg');
+    background-repeat: no-repeat;
+    background-position: 80%;
+    background-size: 2rem; */
+    color: var(--colorText100);
+    font-weight: 600;
+    padding: 1.5rem 1.5rem;
+    vertical-align: top;
+    text-align: left;
+}
+
+.table__body-raw
+.col {
+    color: var(--colorText70);
+    font-weight: 600;
+    padding: 1.5rem 1.5rem;
+    vertical-align: top;
+    text-align: left;
+}
+
+.table__body:before {
+    content:"@";
+    display:block;
+    line-height:1.2rem;
+    text-indent:-99999px;
+}
+
+/* ----- applying border-radius to th and td ----- */
+td, th {
+    border: solid 1px transparent;
+    border-style: none solid solid none;
+    padding: 16px;
+}
+tr:first-child td:first-child,
+tr:first-child th:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+tr:first-child td:last-child,
+tr:first-child th:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+tr:first-child td,
+tr:first-child th {
+    border-top-style: solid;
+}
+tr td:first-child,
+tr th:first-child {
+    border-left-style: solid;
+}
+
+/* button table edit */
+.table__edit {
+    font-size: 1.2rem;
+    width: 8rem;
+    border-radius: 0.5rem;
+    border-style: none;
+    padding: 0.5rem 1.5rem;
+    border-width: 0.1px;
+    color: var(--buttonColorGreen);
+    background-color: var(--buttonColorLightGreen);
+    cursor: pointer;
+}
+
+/* button table delete */
+.table__delete {
+    font-size: 1.2rem;
+    width: 8rem;
+    border-radius: 0.5rem;
+    border-style: none;
+    padding: 0.5rem 1.5rem;
+    border-width: 0.1px;
+    color: var(--buttonColorRed);
+    background-color: var(--buttonColorLightRed);
+    cursor: pointer;
+}
+
+/* table button active */
+.table__edit:active,
+.table__delete:active {
+    background-image: linear-gradient(var(--colorWhite), var(--colorWhite));
+    color: var(--colorDark);
+    box-shadow: .5rem .5rem 20px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,214 @@
+/* ========== DASHBOARD ========== */
+/* ----------- CARDS ---------- */
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10rem;
+    margin-left: 2rem;
+}
+
+/* ---------- Dashboard overview container ---------- */
+.dashboard__overview {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+/* ---------- Dashboard cards -------- */
+.dashboard__card {
+    flex: 1;
+    max-width: 20rem;
+    min-width: 10rem;
+    background-color: var(--colorWhite100);
+    border-radius: 2rem;
+    padding: 3rem;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+
+.dashboard__card-title {
+    color: var(--colorText70);
+}
+
+.dashboard__card-number-container {
+    position: relative;
+    display: flex;
+    margin-top: 1.2rem;
+}
+
+/* before number text colored line */
+.dashboard__card-number {
+    font-size: 3rem;
+    margin-left: 1.8rem;
+    color: var(--colorText50)
+}
+
+.dashboard__card-number-container::before {
+    content: '';
+    width: .6rem;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80%;
+    border-radius: .4rem;
+}
+
+.dashboard__card-1
+.dashboard__card-number-container::before {
+    background-image: linear-gradient(var(--gradientColor1), var(--gradientColor2));
+}
+
+.dashboard__card-2
+.dashboard__card-number-container::before {
+    background-image: linear-gradient(var(--gradientColor3), var(--gradientColor4));
+}
+
+.dashboard__card-3
+.dashboard__card-number-container::before {
+    background-image: linear-gradient(var(--gradientColor5), var(--gradientColor6));
+}
+
+.dashboard__card-4
+.dashboard__card-number-container::before {
+    background-image: linear-gradient(var(--gradientColor7), var(--gradientColor8));
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.4rem;
+}
+
+.pagination__button {
+    cursor: pointer;
+    background-color: var(--colorPrimary70);
+    border-style: none;
+    color: var(--colorWhite100);
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    opacity: 1;
+    scale: 1;
+    animation: all 0.35 ease-in-out;
+    text-decoration: none;
+}
+
+.current {
+    color: var(--colorText70);
+    font-size: 1.2rem;
+    margin: 0.5rem;
+}
+
+/* --------- charts ---------- */
+.chart {
+    display: grid;
+    grid-template-columns: calc(50% - 2px) calc(50% - 2px);
+    grid-gap: 2rem;
+    margin-right: 1.8rem;
+}
+
+.chart__container {
+    margin-top: 4rem;
+    background-color: var(--colorWhite100);
+    border-radius: 2rem;
+    padding: 2rem;
+    margin-right: 2rem;
+    display: flex;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+
+
+@media (max-width: 1310px) {
+    .chart {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .chart__container {
+        width: 60rem;
+        margin-right: 0rem;
+    }
+}
+
+@media (max-width: 1150px) {
+    .dashboard__card {
+        max-width: 20rem;
+        min-width: 18rem;
+    }
+
+    .chart__container {
+        width: 48rem;
+        margin-right: 0rem;
+    }
+}
+
+@media (max-width: 870px) {
+    .dashboard__overview {
+        margin-left: 5rem;
+        margin-right: 5rem;
+    }
+
+    .chart__container {
+        width: 48rem;
+        margin-right: 0rem;
+    }
+}
+
+@media (max-width: 650px) {
+    .dashboard__overview {
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .dashboard__card {
+        max-width: 18rem;
+        min-width: 10rem;
+    }
+
+    .chart__container {
+        width: 40rem;
+        margin-right: 0rem;
+    }
+}
+
+@media (max-width: 390px) {
+    .dashboard__card {
+        max-width: 18rem;
+        min-width: 10rem;
+    }
+
+    .chart__container {
+        width: 38rem;
+        margin-right: 0rem;
+    }
+}   
+
+@media (max-width: 380px) {
+    .dashboard__card {
+        max-width: 20rem;
+        min-width: 12rem;
+    }
+
+    .chart__container {
+        width: 38rem;
+        margin-right: 0rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .dashboard__card {
+        max-width: 20rem;
+        min-width: 12rem;
+    }
+
+    .chart__container {
+        width: 35rem;
+        margin-right: 0rem;
+    }
+}

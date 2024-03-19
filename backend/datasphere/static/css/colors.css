@@ -1,0 +1,40 @@
+/* all color hex and rgb code for (DARK MODE) */
+:root {
+    /* ---------- DARK ---------- */
+    --colorDark: #0E0E0E;
+    --colorDarkMedium: #10110E;   
+    --colorDarkLight: #4F4F4F;
+    --colorDarkExtraLight: #848484;
+
+    /* Main background colors */
+	--mainBgColor:#f9fbff;
+    --sideBgColor:#FFFFFF;
+    --colorPrimary: #1e00ff;
+    --colorPrimary70: rgba(30, 0, 255, 0.7);
+    --colorSecondary: #1B254B;
+    --colorText100: rgba(27, 37, 75, 1);
+    --colorText70: rgba(27, 37, 75, 0.7);
+    --colorText50: rgba(27, 37, 75, 0.5);
+    --colorText30: rgba(27, 37, 75, 0.3);
+    --colorText10: rgba(27, 37, 75, 0.1);
+    --colorText5: rgba(27, 37, 75, 0.04);
+    --colorWhite100: rgba(255, 255, 255, 1);
+    --colorWhite70: rgba(241, 239, 252, 0.7);
+    --colorWhite30: rgba(255, 255, 255, 0.3);
+
+    /* ---------- WHITE ---------- */
+    --colorWhite: #FFFFFF;
+    --colorWhiteMedium: #F9F9F9;   
+    --colorWhiteLight: #F1F1F1;
+    --colorWhiteExtraLight: #EBEBEB;
+
+    /* Gradients */
+    --gradientColor1:#BD00FF;
+    --gradientColor2:#0085FF;
+    --gradientColor3:#FFF500;
+    --gradientColor4:#FFB800;
+    --gradientColor5:#FF5C00;
+    --gradientColor6:#FF0000;
+    --gradientColor7:#00E0FF;
+    --gradientColor8:#00D1FF;
+}

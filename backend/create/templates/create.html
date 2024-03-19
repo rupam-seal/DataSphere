@@ -1,0 +1,136 @@
+{% extends 'main.html' %} 
+{% block content %}
+  <!-- -------- ORDER FORM --------- -->
+  <div class="form__container">
+    <form action="" method="POST">
+      {% csrf_token %}
+      <div class="form">
+      <div class="form__card form__item-1">
+        <div class="form__header-container">
+          <h5 class="form__header">Sector and Topic</h5>
+        </div>
+        <div class="form__list">
+          <div class="form__item">
+            <h5 class="form__name">Sector</h5>
+            <div class="form-group">{{insightForm.sector}}</div>
+          </div>
+  
+          <div class="form__item">
+            <h5 class="form__name">Topic</h5>
+            <div class="form-group">{{insightForm.topic}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form__card form__item-2">
+        <div class="form__header-container">
+          <h5 class="form__header">Temporal Information</h5> 
+        </div>
+
+        <div class="form__list">
+          <div class="form__item">
+            <h5 class="form__name">Start Year</h5>
+            <div class="form-group">{{insightForm.start_year}}</div>
+          </div>
+  
+          <div class="form__item">
+            <h5 class="form__name">End Year</h5>
+            <div class="form-group">{{insightForm.end_year}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form__card form__item-1">
+        <div class="form__header-container">
+          <h5 class="form__header">Geographical Information</h5>
+        </div>
+
+        <div class="form__list">
+          <div class="form__item">
+            <h5 class="form__name">Region</h5>
+            <div class="form-group">{{insightForm.region}}</div>
+          </div>
+    
+          <div class="form__item">
+            <h5 class="form__name">Country</h5>
+            <div class="form-group">{{insightForm.country}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form__card form__item-3">
+        <div class="form__header-container">
+          <h5 class="form__header">General Information</h5>
+        </div>
+
+        <div class="form__list">
+          <div class="form__item">
+            <h5 class="form__name">Title</h5>
+            <div class="form-group">{{insightForm.title}}</div>
+          </div>
+
+          <div class="form__item">
+            <h5 class="form__name">Insight</h5>
+            <div class="form-group">{{insightForm.insight}}</div>
+          </div>
+
+          <div class="form__item">
+            <h5 class="form__name">Url</h5>
+            <div class="form-group">{{insightForm.url}}</div>
+          </div>
+          
+          <div class="form__item">
+            <h5 class="form__name">Source</h5>
+            <div class="form-group">{{insightForm.source}}</div>
+          </div>
+
+          <div class="form__item">
+            <h5 class="form__name">Published</h5>
+            <div class="form-group">{{insightForm.published}}</div>
+          </div>
+
+          <div class="form__item">
+            <h5 class="form__name">Added</h5>
+            <div class="form-group">{{insightForm.added}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form__card form__item-4">
+        <div class="form__header-container">
+          <h5 class="form__header">Impact Information</h5>
+        </div>
+
+        <div class="form__list">
+          <div class="form__item">
+            <h5 class="form__name">Impact</h5>
+            <div class="form-group">{{insightForm.impact}}</div>
+          </div>
+  
+          <div class="form__item">
+            <h5 class="form__name">Relevance</h5>
+            <div class="form-group">{{insightForm.relevance}}</div>
+          </div>
+  
+          <div class="form__item">
+            <h5 class="form__name">Likelihood</h5>
+            <div class="form-group">{{insightForm.likelihood}}</div>
+          </div>
+  
+          <div class="form__item">
+            <h5 class="form__name">Intensity</h5>
+            <div class="form-group">{{insightForm.intensity}}</div>
+          </div>
+  
+          <div class="form__item">
+            <h5 class="form__name">Pestle</h5>
+            <div class="form-group">{{insightForm.pestle}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type="submit" name="submit" class="form__button" />
+    </form>
+  </div>
+</div>
+{% endblock %}

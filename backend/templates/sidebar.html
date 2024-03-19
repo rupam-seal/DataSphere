@@ -1,0 +1,45 @@
+<!-- ========== SIDEBAR ========== -->
+<div class="sidebar">
+    <div class="top">
+        <!-- ---------- SIDEBAR HEADER ---------- -->
+        <div class="header__container">
+            <div class="logo__container">
+                <img class="nav__logo" src="/static/icons/ic_logo.svg"></img>
+                <h3 class="logo__txt">Data<span class="logo__highlight">Sphere.</span></h3>
+            </div>
+        </div>
+        
+        <!-- ---------- SIDEBAR NAV LINK -->
+        <div class="nav__container">
+            <div class="container__title">overview</div>
+            <div class="nav__item--container">
+                <div class="nav {% if navbar == 'dashboard' %} nav--active {% endif %}">
+                    {% if navbar == 'dashboard' %}
+                    <a href="{% url 'dashboard' %}" class="nav__image_container">
+                        <img class="nav__img" src="/static/icons/ic_dashboard_active.svg"></img>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'dashboard' %}" class="nav__image_container">
+                        <img class="nav__img" src="/static/icons/ic_dashboard.svg"></img>
+                    </a>
+                    {% endif %}
+                    
+                    <a class="nav__txt" href="{% url 'dashboard' %}">Dashboard</a>
+                </div>
+                <div class="nav {% if navbar == 'create' %} nav--active {% endif %}">
+                    {% if navbar == 'dashboard' %}
+                    <a href="{% url 'create' %}" class="nav__image_container">
+                        <img class="nav__img" src="/static/icons/ic_create_active.svg"></img>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'create' %}" class="nav__image_container">
+                        <img class="nav__img" src="/static/icons/ic_create.svg"></img>
+                    </a>
+                    {% endif %}
+                    
+                    <a class="nav__txt" href="{% url 'create' %}">Create</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

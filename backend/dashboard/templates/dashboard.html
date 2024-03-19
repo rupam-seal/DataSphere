@@ -1,0 +1,182 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+<div class="dashboard">
+    <!-- ---------- DASHBOARD OVERVIEW CARDS ---------- -->
+    <div class="dashboard__overview">
+        <div class="dashboard__card dashboard__card-1">
+            <h5 class="dashboard__card-title">Insights</h5>
+            <div class="dashboard__card-number-container">
+                <h1 class="dashboard__card-number">{{insights_count}}</h1>
+            </div>
+        </div>
+        <div class="dashboard__card dashboard__card-2">
+            <h5 class="dashboard__card-title">Sectors</h5>
+            <div class="dashboard__card-number-container">
+                <h1 class="dashboard__card-number">{{total_sector_count}}</h1>
+            </div>
+        </div>
+        <div class="dashboard__card dashboard__card-3">
+            <h5 class="dashboard__card-title">Topics</h5>
+            <div class="dashboard__card-number-container">
+                <h1 class="dashboard__card-number">{{total_topic_count}}</h1>
+            </div>
+        </div>
+        <div class="dashboard__card dashboard__card-4">
+            <h5 class="dashboard__card-title">Country</h5>
+            <div class="dashboard__card-number-container">
+                <h1 class="dashboard__card-number">{{total_country_count}}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="chart">
+        <div class="chart__container">
+            <canvas id="chart1"></canvas>
+        </div>
+        <div class="chart__container">
+            <canvas id="pieChart"></canvas>
+        </div>
+    </div>
+    <h4 class="table-title">Insights</h4>
+    <table class="table">
+    <!-- table header -->
+    <thead class="table__header">
+        <tr class="table__header-raw">
+        <th class="col col1">Id</th>
+        <th class="col col2">Title</th>
+        <th class="col col3">Sector</th>
+        <th class="col col4">Topic</th>
+        <th class="col col5">Region</th>
+        <th class="col col6">Country</th>
+        </tr>
+
+        <tr></tr>
+    </thead>
+
+    <!-- table body -->
+    {% for insight in page_obj %}
+    <tbody class="table__body">
+        <tr class="table__body-raw">
+            <td class="col col1">{{ insight.id }}</td>
+            <td class="col col2">{{ insight.title|default:"NA" }}</td>
+            <td class="col col3">{{ insight.sector|default:"NA" }}</td>
+            <td class="col col4">{{ insight.topic|default:"NA" }}</td>
+            <td class="col col5">{{ insight.region|default:"NA" }}</td>
+            <td class="col col6">{{ insight.country|default:"NA" }}</td>
+        </tr>
+    </tbody>
+    {% endfor %}
+    </table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a class="pagination__button" href="?page=1">First</a>
+                <a class="pagination__button" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a class="pagination__button" href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a class="pagination__button" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+<script>
+    const data = {
+        labels: {{ labels|safe }},
+        datasets: [{
+            label: 'Insights',
+            data: {{ counts|safe }},
+            fill: true,
+            borderColor: "rgba(30, 0, 255, 0.8)",
+            backgroundColor: "rgba(30, 0, 255, 0.5)",
+            borderWidth: 2,
+            borderRadius: 2,
+            tension: 0.1
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        color: "rgba(255, 255, 255, 1)"
+                    },
+                    ticks: {
+                        fontColor: "rgba(27, 37, 75, 0.7)"
+                    }
+                }],
+                yAxes: [{
+                    gridLines: {
+                        display: false,
+                        color: "rgba(255, 255, 255, 1)"
+                    },
+                    ticks: {
+                        fontColor: "rgba(27, 37, 75, 0.7)"
+                    }
+                }]
+            }
+        }
+    };
+
+    const pieChartData = {
+        labels: {{ sector_labels|safe }},
+        datasets: [{
+            label: 'Sectors',
+            data: {{ sector_counts_data|safe }},
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)',
+                'rgba(255, 159, 64, 0.5)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    const pieChartConfig = {
+        type: 'pie',
+        data: pieChartData,
+        options: {
+            responsive: true,
+            legend: {
+                display: false
+            },
+            title: {
+                display: false
+            }
+        }
+    };
+
+    window.onload = function() {
+        var ctx = document.getElementById('chart1').getContext('2d');
+        window.myChart = new Chart(ctx, config);
+
+        var pieCtx = document.getElementById('pieChart').getContext('2d');
+        new Chart(pieCtx, pieChartConfig);
+    };
+</script>
+{% endblock %}
