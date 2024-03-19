@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Create from "./pages/Create";
 import { Sidebar } from "./components/sidebar";
 import { Topbar } from "./components/topbar";
@@ -43,15 +43,17 @@ const App = () => {
             <Route path="/" element={<Overview />} exact />
             <Route path="/create" element={<Create />} exact />
             <Route path="/insights" element={<Insights />} exact />
-            <Route
-              path="/admin"
-              element={<Redirect to="https://datasphere-admin.vercel.app" />}
-            />
+            <Route path="/admin" element={<RedirectToExternalWebsite />} />
           </Routes>
         </BrowserRouter>
       </GlobalProvider>
     </React.StrictMode>
   );
+};
+
+const RedirectToExternalWebsite = () => {
+  window.location.href = "https://datasphere-admin.vercel.app";
+  return null;
 };
 
 export default App;
