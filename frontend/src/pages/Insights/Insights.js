@@ -124,7 +124,8 @@ export const Insights = () => {
                     padding: "1.6rem",
                     textAlign: "left",
                     fontSize: "1.4rem",
-                    color: "rgba(27, 37, 75, 0.7)",
+                    fontWeight: 600,
+                    color: "rgba(27, 37, 75, 1)",
                     border: "1px solid rgba(212, 207, 255, 0.5)",
                   }}
                   {...column.getHeaderProps()}
@@ -154,6 +155,7 @@ export const Insights = () => {
                         padding: "1.6rem",
                         textAlign: "left",
                         fontSize: "1.4rem",
+                        fontWeight: 600,
                         color: "rgba(27, 37, 75, 0.7)",
                         border: "1px solid rgba(212, 207, 255, 0.5)",
                       }}
