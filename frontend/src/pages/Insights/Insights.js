@@ -8,7 +8,7 @@ export const Insights = () => {
   const [insights, setInsights] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
-  const TOTAL_INSIGHTS_COUNT = 1000;
+  const TOTAL_INSIGHTS_COUNT = InsightsService.insightCount();
   const ITEMS_PER_PAGE = 100;
   const totalPages = Math.ceil(TOTAL_INSIGHTS_COUNT / ITEMS_PER_PAGE);
 

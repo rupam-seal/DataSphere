@@ -13,6 +13,18 @@ class InsightsService {
     }
   }
 
+  static async insightCount() {
+    try {
+      const response = await axios.get(
+        "https://datasphere-admin.vercel.app/api/insights/?page_size=1000"
+      );
+      return response.data.count;
+    } catch (error) {
+      console.error("Error fetching insights:", error);
+      throw error;
+    }
+  }
+
   static async fetchInsightsByPage(page = 1) {
     try {
       const response = await axios.get(
