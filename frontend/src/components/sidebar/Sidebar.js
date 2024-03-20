@@ -1,7 +1,6 @@
 import React from "react";
 import Container from "./Container";
 import { BsGrid } from "react-icons/bs";
-import { CgExtensionAdd } from "react-icons/cg";
 import { MdOutlineInsights } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { MdDataSaverOff } from "react-icons/md";
@@ -27,7 +26,6 @@ export const Sidebar = () => {
           <Container title={"overview"}>
             <div>
               <MenuItem icon={<BsGrid />} title={"Overview"} />
-              <MenuItem icon={<CgExtensionAdd />} title={"Create"} />
               <MenuItem icon={<MdOutlineInsights />} title={"Insights"} />
             </div>
           </Container>

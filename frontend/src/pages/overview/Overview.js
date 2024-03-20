@@ -164,8 +164,10 @@ export const Overview = () => {
   ];
 
   sectors.forEach((sector) => {
-    if (sector !== "") {
+    if (sector.trim() !== "") {
       options.push({ value: sector, label: sector });
+    } else {
+      options.push({ value: "NA", label: "NA" });
     }
   });
 
@@ -175,8 +177,10 @@ export const Overview = () => {
 
   const uniqueTopics = [...new Set(insights.map((insight) => insight.topic))];
   uniqueTopics.forEach((topic) => {
-    if (topic !== "") {
+    if (topic.trim() !== "") {
       topics.push({ value: topic, label: topic });
+    } else {
+      topics.push({ value: "NA", label: "NA" });
     }
   });
 
@@ -190,8 +194,10 @@ export const Overview = () => {
 
   const uniqueRegions = [...new Set(insights.map((insight) => insight.region))];
   uniqueRegions.forEach((region) => {
-    if (region !== "") {
+    if (region.trim() !== "") {
       regions.push({ value: region, label: region });
+    } else {
+      regions.push({ value: "NA", label: "NA" });
     }
   });
 
@@ -199,20 +205,24 @@ export const Overview = () => {
     ...new Set(insights.map((insight) => insight.country)),
   ];
   uniqueCountries.forEach((country) => {
-    if (country !== "") {
+    if (country.trim() !== "") {
       countries.push({ value: country, label: country });
+    } else {
+      countries.push({ value: "NA", label: "NA" });
     }
   });
 
   const uniquePestle = [...new Set(insights.map((insight) => insight.pestle))];
   uniquePestle.forEach((pestle) => {
-    if (pestle !== "") {
+    if (pestle.trim() !== "") {
       pestles.push({ value: pestle, label: pestle });
+    } else {
+      pestles.push({ value: "NA", label: "NA" });
     }
   });
 
   return (
-    <div style={{ marginTop: "90px" }}>
+    <div style={{ marginTop: "9rem" }}>
       <div className="select__container">
         <div className="select-multi">
           <Selector
@@ -296,98 +306,106 @@ export const Overview = () => {
         </div>
       </div>
       <div className="chart__canvas">
-        <LineChart
-          data={
-            selectedFilter === "Published Year"
-              ? getYearData(filteredInsights, sortedPublishedYears)
-              : selectedFilter === "Start Year"
-              ? getYearData(filteredInsights, sortedStartYears)
-              : selectedFilter === "End Year"
-              ? getYearData(filteredInsights, sortedEndYears)
-              : null
-          }
-          title={"Year"}
-        >
-          <MdOutlineAccessTimeFilled />
-        </LineChart>
-        <BarChart
-          data={getSWOTChartData(swotCounts, selectedSwot)}
-          title={"SWOT Analysis"}
-        >
-          <MdAnalytics />
-        </BarChart>
-        <BarChart
-          data={
-            selectedFilter === "Published Year"
-              ? getChartData(
-                  filteredInsights,
-                  sortedPublishedYears,
-                  "intensity"
-                )
-              : selectedFilter === "Start Year"
-              ? getChartData(filteredInsights, sortedStartYears, "intensity")
-              : selectedFilter === "End Year"
-              ? getYearData(filteredInsights, sortedEndYears)
-              : null
-          }
-          title={"Intensity"}
-        >
-          <FaBolt />
-        </BarChart>
-        <BarChart
-          data={
-            selectedFilter === "Published Year"
-              ? getChartData(
-                  filteredInsights,
-                  sortedPublishedYears,
-                  "likelihood"
-                )
-              : selectedFilter === "Start Year"
-              ? getChartData(filteredInsights, sortedStartYears, "likelihood")
-              : selectedFilter === "End Year"
-              ? getYearData(filteredInsights, sortedEndYears)
-              : null
-          }
-          title={"Likelihood"}
-        >
-          <AiFillLike />
-        </BarChart>
-        <BarChart
-          data={
-            selectedFilter === "Published Year"
-              ? getChartData(
-                  filteredInsights,
-                  sortedPublishedYears,
-                  "relevance"
-                )
-              : selectedFilter === "Start Year"
-              ? getChartData(filteredInsights, sortedEndYears, "relevance")
-              : selectedFilter === "End Year"
-              ? getYearData(filteredInsights, sortedEndYears)
-              : null
-          }
-          title={"Relevance"}
-        >
-          <HiTrendingUp />
-        </BarChart>
-        <PieChart
-          data={getChartDataForCategory(filteredInsights, "country")}
-          title={"Country"}
-        >
-          <HiLocationMarker />
-        </PieChart>
-        <PieChart
-          data={getChartDataForCategory(filteredInsights, "topic")}
-          title={"Topic"}
-        >
-          <MdOutlineLocalFireDepartment />
-        </PieChart>
-        <PieChart
-          data={getChartDataForCategory(filteredInsights, "region")}
-          title={"Region"}
-        >
-          <RiRoadMapFill />
-        </PieChart>
+        <div className="chart">
+          <LineChart
+            data={
+              selectedFilter === "Published Year"
+                ? getYearData(filteredInsights, sortedPublishedYears)
+                : selectedFilter === "Start Year"
+                ? getYearData(filteredInsights, sortedStartYears)
+                : selectedFilter === "End Year"
+                ? getYearData(filteredInsights, sortedEndYears)
+                : null
+            }
+            title={"Year"}
+          >
+            <MdOutlineAccessTimeFilled />
+          </LineChart>
+          <BarChart
+            data={getSWOTChartData(swotCounts, selectedSwot)}
+            title={"SWOT Analysis"}
+          >
+            <MdAnalytics />
+          </BarChart>
+        </div>
+        <div className="chart">
+          <BarChart
+            data={
+              selectedFilter === "Published Year"
+                ? getChartData(
+                    filteredInsights,
+                    sortedPublishedYears,
+                    "intensity"
+                  )
+                : selectedFilter === "Start Year"
+                ? getChartData(filteredInsights, sortedStartYears, "intensity")
+                : selectedFilter === "End Year"
+                ? getYearData(filteredInsights, sortedEndYears)
+                : null
+            }
+            title={"Intensity"}
+          >
+            <FaBolt />
+          </BarChart>
+          <PieChart
+            data={getChartDataForCategory(filteredInsights, "country")}
+            title={"Country"}
+          >
+            <HiLocationMarker />
+          </PieChart>
+        </div>
+        <div className="chart">
+          <PieChart
+            data={getChartDataForCategory(filteredInsights, "topic")}
+            title={"Topic"}
+          >
+            <MdOutlineLocalFireDepartment />
+          </PieChart>
+          <BarChart
+            data={
+              selectedFilter === "Published Year"
+                ? getChartData(
+                    filteredInsights,
+                    sortedPublishedYears,
+                    "likelihood"
+                  )
+                : selectedFilter === "Start Year"
+                ? getChartData(filteredInsights, sortedStartYears, "likelihood")
+                : selectedFilter === "End Year"
+                ? getYearData(filteredInsights, sortedEndYears)
+                : null
+            }
+            title={"Likelihood"}
+          >
+            <AiFillLike />
+          </BarChart>
+        </div>
+        <div className="chart">
+          <BarChart
+            data={
+              selectedFilter === "Published Year"
+                ? getChartData(
+                    filteredInsights,
+                    sortedPublishedYears,
+                    "relevance"
+                  )
+                : selectedFilter === "Start Year"
+                ? getChartData(filteredInsights, sortedEndYears, "relevance")
+                : selectedFilter === "End Year"
+                ? getYearData(filteredInsights, sortedEndYears)
+                : null
+            }
+            title={"Relevance"}
+          >
+            <HiTrendingUp />
+          </BarChart>
+          <PieChart
+            data={getChartDataForCategory(filteredInsights, "region")}
+            title={"Region"}
+          >
+            <RiRoadMapFill />
+          </PieChart>
+        </div>
       </div>
     </div>
   );

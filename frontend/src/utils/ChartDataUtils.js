@@ -6,6 +6,9 @@ import {
 } from "./InsightsUtils";
 
 export const getChartData = (filteredInsights, sortedYears, attribute) => {
+  const data = getInsightDataForMonths(filteredInsights, attribute).map(
+    (value) => (isNaN(value) ? "NA" : value)
+  );
   return {
     labels: getMonthsInYear(),
     datasets: [
@@ -16,7 +19,7 @@ export const getChartData = (filteredInsights, sortedYears, attribute) => {
         backgroundColor: "rgba(30, 0, 255, 0.5)",
         borderWidth: 2,
         borderRadius: 2,
-        data: getInsightDataForMonths(filteredInsights, attribute),
+        data: data,
       },
     ],
   };
@@ -31,8 +34,9 @@ export const getYearData = (filteredInsights, sortedYears) => {
         data: getInsightCountByYear(filteredInsights, sortedYears),
         fill: true,
         borderWidth: 2,
-        borderColor: "rgb(30, 0, 255, 0.5)",
-        backgroundColor: "rgba(30, 0, 255, 0.3)",
+        borderColor: "rgb(30, 0, 255, 0.6)",
+        backgroundColor: "rgba(30, 0, 255, 0.2)",
+        tension: 0.1,
       },
     ],
   };
@@ -43,7 +47,10 @@ export const getChartDataForCategory = (filteredInsights, category) => {
     filteredInsights,
     category
   );
-  const labels = Object.keys(insightCountByCategory);
+
+  const labels = Object.keys(insightCountByCategory).map((label) =>
+    label.trim() === "" ? "NA" : label
+  );
   const data = Object.values(insightCountByCategory);
 
   return {

@@ -34,28 +34,31 @@ class InsightsService {
     selectedCountry,
     selectedPestle
   ) {
-    return insights.filter((insight) => {
-      const insightYear = new Date(insight.published).getFullYear();
-      return (
-        (!selectedSector ||
-          insight.sector
-            .toLowerCase()
-            .includes(selectedSector.toLowerCase())) &&
-        (!selectedYear || insightYear === parseInt(selectedYear)) &&
-        (!selectedTopic ||
-          insight.topic.toLowerCase().includes(selectedTopic.toLowerCase())) &&
-        (!selectedRegion ||
-          insight.region
-            .toLowerCase()
-            .includes(selectedRegion.toLowerCase())) &&
-        (!selectedCountry ||
-          insight.country
-            .toLowerCase()
-            .includes(selectedCountry.toLowerCase())) &&
-        (!selectedPestle ||
-          insight.pestle.toLowerCase().includes(selectedPestle.toLowerCase()))
-      );
-    });
+    return insights
+      .map((insight) => ({
+        ...insight,
+        sector: insight.sector || "NA",
+        topic: insight.topic || "NA",
+        region: insight.region || "NA",
+        country: insight.country || "NA",
+        pestle: insight.pestle || "NA",
+      }))
+      .filter((insight) => {
+        const insightYear = new Date(insight.published).getFullYear();
+        return (
+          (!selectedSector ||
+            insight.sector.toLowerCase() === selectedSector.toLowerCase()) &&
+          (!selectedYear || insightYear === parseInt(selectedYear)) &&
+          (!selectedTopic ||
+            insight.topic.toLowerCase() === selectedTopic.toLowerCase()) &&
+          (!selectedRegion ||
+            insight.region.toLowerCase() === selectedRegion.toLowerCase()) &&
+          (!selectedCountry ||
+            insight.country.toLowerCase() === selectedCountry.toLowerCase()) &&
+          (!selectedPestle ||
+            insight.pestle.toLowerCase() === selectedPestle.toLowerCase())
+        );
+      });
   }
 
   static findTopInsights(insights, numTopInsights) {

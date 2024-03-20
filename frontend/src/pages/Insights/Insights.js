@@ -91,7 +91,7 @@ export const Insights = () => {
   };
 
   return (
-    <div style={{ marginTop: "90px" }}>
+    <div style={{ marginTop: "9rem" }}>
       <div className="table__input_container">
         <RiSearchLine />
         <input

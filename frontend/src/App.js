@@ -41,7 +41,6 @@ const App = () => {
           <Topbar />
           <Routes>
             <Route path="/" element={<Overview />} exact />
-            <Route path="/create" element={<Create />} exact />
             <Route path="/insights" element={<Insights />} exact />
             <Route path="/admin" element={<RedirectToExternalWebsite />} />
           </Routes>

@@ -35,6 +35,19 @@
   text-align: center;
 }
 
+.chart {
+  display: grid;
+  grid-template-columns: calc(50% - 2px) calc(50% - 2px);
+  grid-gap: 2rem;
+}
+
+@media (max-width: 750px) {
+  .chart {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 480px) {
   .select {
     width: 100%;

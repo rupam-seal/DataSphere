@@ -5,6 +5,11 @@ const PieChart = ({ data, title, children }) => {
   const options = {
     maintainAspectRatio: false,
     responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
   };
 
   return (

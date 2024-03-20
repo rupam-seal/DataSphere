@@ -1,13 +1,12 @@
 .bar {
+  background-color: var(--colorWhite100);
+  border-radius: 2rem;
+  padding: 3rem 2rem;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
-  height: 40vh;
-  background-color: white;
-  padding: 50px;
-  border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
-  gap: 1rem
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  height: 50vh;
 }
 
 .chart__top {
@@ -19,15 +18,14 @@
 }
 
 .pie {
+  background-color: var(--colorWhite100);
+  border-radius: 2rem;
+  padding: 3rem 2rem;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
-  height: 80vh;
-  background-color: white;
-  padding: 50px;
-  border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
-  gap: 3.6rem
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  height: 50vh;
 }
 
 .chart__title {
@@ -46,6 +44,6 @@
   .pie {
     padding-left: 10px;
     padding-right: 10px;
-    height: 50vh;
+    height: 30vh;
   }
 }

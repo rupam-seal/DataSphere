@@ -110,8 +110,7 @@
 .hidden__menu {
   display: none;
   font-size: 1.5rem;
-  color: var(--colorWhite100);
-  margin: 2rem;
+  color: var(--colorText100);
   background-color: var(--colorText10);
   padding: 1rem;
   border-radius: 1rem;
