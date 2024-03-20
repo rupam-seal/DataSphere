@@ -1,0 +1,17 @@
+.toggle__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--colorText100);
+  background-color: var(--colorText10);
+  padding: 1rem;
+  border-radius: 1rem;
+  z-index: 200;
+}
+
+.toggle__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

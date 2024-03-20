@@ -3,11 +3,15 @@ import { useLocation } from "react-router-dom";
 
 import "./index.css";
 import Profile from "./Profile";
-import HiddenItem from "./HiddenItem";
+import { closeVariants } from "../../utils/motion";
+import { useToggle } from "../../hooks/useToggle";
+import { ToggleButton } from "../ToggleButton/ToggleButton";
+import { Menu } from "../Menu/Menu";
 
 export const Topbar = () => {
   const [title, setTitle] = useState();
   const location = useLocation();
+  const { status: expand, toggleStatus: toggleExpand } = useToggle();
 
   useEffect(() => {
     switch (location.pathname) {
@@ -27,12 +31,21 @@ export const Topbar = () => {
   }, [location.pathname, setTitle]);
 
   return (
-    <div className="topbar">
-      <div className="Welcome">
-        <div className="welcome__title">{title}</div>
+    <>
+      <div className="topbar" style={{ boxShadow: expand && "none" }}>
+        <div className="Welcome">
+          {!expand && <div className="welcome__title">{title}</div>}
+        </div>
+        <Profile />
+        <div className="hidden">
+          <ToggleButton
+            expand={expand}
+            toggleStatus={toggleExpand}
+            variants={closeVariants(expand ? 180 : -180)}
+          />
+        </div>
       </div>
-      <Profile />
-      <HiddenItem />
-    </div>
+      <Menu expand={expand} toggleExpand={toggleExpand} />
+    </>
   );
 };
