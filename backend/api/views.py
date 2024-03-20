@@ -12,12 +12,31 @@ class CustomPagination(PageNumberPagination):
 @api_view(['GET'])
 def api_overview(request):
     api_urls = {
-        'List Insights': '/insights/',
-        'Detail View Insight': '/insights/<int:pk>/',
-        'Create Insight': '/insights/create/',
-        'Update Insight': '/insights/update/<int:pk>/',
-        'Delete Insight': '/insights/delete/<int:pk>/',
+        'Insights API Overview': {
+            'Description': 'Endpoints to manage insights.',
+            'endpoints': {
+                'List Insights': '/insights/',
+                'Detail View Insight': '/insights/<int:pk>/',
+                'Create Insight': '/insights/create/',
+                'Update Insight': '/insights/update/<int:pk>/',
+                'Delete Insight': '/insights/delete/<int:pk>/',
+            }
+        }
     }
+    
+    pagination_info = {
+        'Pagination Info': {
+            'Description': 'You can paginate through results using the page parameter in the URL.',
+            'endpoint': '/insights/?page=1',
+        },
+        'Custom Page Size': {
+            'Description': 'Specify the number of items per page using the page_size parameter.',
+            'endpoint': '/insights/?page_size=20&page=1',
+        },
+    }
+
+    api_urls.update(pagination_info)
+
     return Response(api_urls)
 
 @api_view(['GET'])
